@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { Header } from "./components";
-import { Home, Restaurante } from "./pages";
+import { Home, Restaurante, RestauranteCadastrar, RestauranteEditar } from "./pages";
 
 function App() {
   return (
@@ -13,8 +13,14 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/restaurantes">
+            <Route exact path="/restaurantes">
               <Restaurante/>
+            </Route>
+            <Route exact path="/restaurantes/cadastrar">
+              <RestauranteCadastrar/>
+            </Route>
+            <Route exact path="/restaurantes/:id">
+              <RestauranteEditar/>
             </Route>
             <Redirect to="/" />
           </Switch>

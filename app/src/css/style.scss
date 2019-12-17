@@ -67,9 +67,29 @@ header { height: 50px;
 
 .search-box { border: 1px solid black; padding: px2em(20px) px2em(30px); position: relative;
     .search-box-title { background-color: white; position: absolute; left: px2em(10px); top: -10px; padding: 0 4px; }
+    fieldset input { width: 100%; }
     button img { width: px2em(18px); height: px2em(18px); }
 }
 
-.buttons-wrapper { margin: px2em(20px) 0 0; }
+table.items-list { border: 1px solid black; padding: px2em(20px) px2em(30px); margin-top: px2em(25px); width: 100%; 
+    tr, td { border: none; padding: px2em(5px) 0; }
+    thead { background-color: #bababa; 
+        tr td{ text-align: center; font-size: 16px; font-weight: 500;
+            &:last-child { width: 85%; } 
+        }
+    }
+    tbody { font-size: 14px;
+        tr:nth-child(even) { background-color: #ddd; }
+    }
+}
 
-button { @include button(#fff, #4eaf50, 30px) }
+.buttons-wrapper { margin: px2em(20px) 0 0; display: flex;
+    button { margin-right: px2em(15px); }
+}
+
+button, .button { @include button(#fff, #4eaf50, 30px);
+    &.delete-button { @include button(#cc6666, #cc0000, 20px); padding: 0 5px; }
+    &.edit-button { @include button(#6666cc, #0000cc, 20px); padding: 0 5px; }
+    &.cancel-button { @include button(#FFF, #cc0000, 30px); }
+    img { width: 15px; height: 15px; }
+}
