@@ -1,0 +1,75 @@
+@import "reset.css";
+
+$defaultFontSize: 14px;
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600');
+
+* { font-family: 'Montserrat', sans-serif; }
+
+@function px2em($size, $context: $defaultFontSize) {
+    @if (unitless($size)) {
+        $size: $size * 1px;
+    }
+
+    @if (unitless($context)) {
+        $context: $context * 1px;
+    }
+    @return ($size/$context) * 1rem;
+}
+
+/* Change color hover */
+@mixin cch($color,$bgcolor,$bordercolor:$bgcolor,$manter_borda:false,$i:$color) { color: $color; background-color: $bgcolor; border: 2px solid $bordercolor;
+
+    svg path { fill: $color; }
+
+    &:disabled { $color: rgba(144, 160, 172, 0.30); border-color: transparent; background-color: $color; cursor: default; }
+
+    @media screen and (min-width: 998px) { transition-duration: 0.3s; transition-property: background-color, color, border-color; $color: $bgcolor; $bgcolor: $i;
+        svg path { transition: fill 0.3s ease; }
+        &:not(:disabled):hover { color: $color; background-color: $bgcolor;
+            @if $manter_borda == false {
+                border-color: $color;
+            }
+            svg path { fill: $color; stroke: $color; }
+        }
+    }
+}
+
+@mixin button($color,$bgcolor,$height,$bordercolor:$bgcolor,$manter_borda:false) {
+    display: flex; justify-content: center; align-items: center; height: px2em($height); border-radius: px2em($height - 1px); padding: 0 px2em(26px); text-transform: uppercase; font-size: px2em(15); font-weight: 500;
+    @include cch($color,$bgcolor,$bordercolor,$manter_borda);
+}
+
+header { height: 50px;
+    .menu { box-shadow: 0 3px 6px rgba(0,0,0,.06); width: 100%; display: flex; align-items: center; height: 50px; padding: 0 px2em(20px); position: fixed; top: 0; left: 0; background-color: white; z-index: 3;
+        a { font-size: px2em(18px); padding-right: px2em(15px); color: #444;
+            &.selected, &:hover { text-decoration: underline; color: #000; }
+            &:not(:first-child) { padding-left: px2em(15px); }
+            &:not(:last-child) { border-right: 1px solid #ccc; }
+        }
+    }
+}
+
+.content { position: relative;
+    .center-wrapper { background-image: url("/restaurant.jpg"); background-size: cover; background-position: center; height: calc(100vh - 50px); display: flex; justify-content: center; align-items: center;
+        .center-title { background-color: white; border-radius: 50%; $centerTitleBlockSize: px2em(200px); height: $centerTitleBlockSize; width: $centerTitleBlockSize; display: flex; text-align: center; justify-content: center; border: 1px solid #666; 
+            p { display: flex; justify-content: center; align-items: center; width: 90%; height: auto; transition: all 0.3s; }
+            &:hover { box-shadow: 0 0 6px rgba(0,0,0,.4);
+                p { transform: scale(1.1); } 
+            }
+        }
+    }
+}
+
+.list-wrapper { width: 90%; margin: 0 auto; 
+    h1 { margin: px2em(20px) 0 px2em(30px); }
+}
+
+.search-box { border: 1px solid black; padding: px2em(20px) px2em(30px); position: relative;
+    .search-box-title { background-color: white; position: absolute; left: px2em(10px); top: -10px; padding: 0 4px; }
+    button img { width: px2em(18px); height: px2em(18px); }
+}
+
+.buttons-wrapper { margin: px2em(20px) 0 0; }
+
+button { @include button(#fff, #4eaf50, 30px) }
