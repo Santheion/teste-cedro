@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withFormik, Form, Field, ErrorMessage } from "formik";
 
-class RestauranteForm extends Component {
+class PratoForm extends Component {
     render() { 
         return (
             <div className="search-box">
@@ -17,7 +17,7 @@ class RestauranteForm extends Component {
                     <ErrorMessage name="name"/>
                     <div className="buttons-wrapper">
                         <button type="submit">Enviar</button>
-                        <Link className="button cancel-button" to="/restaurantes">Cancelar</Link>
+                        <Link className="button cancel-button" to="/pratos">Cancelar</Link>
                     </div>
                 </Form>
             </div>
@@ -26,9 +26,9 @@ class RestauranteForm extends Component {
 }
  
 export default withFormik({
-    mapPropsToValues: ({restaurant}) => {
-        if(restaurant && restaurant.name)
-            return { name: restaurant.name };
+    mapPropsToValues: ({menu}) => {
+        if(menu && menu.name)
+            return { name: menu.name };
         else
             return { name: "" };
     },
@@ -38,4 +38,4 @@ export default withFormik({
         await props.handleSubmit(values);
         setSubmitting(false);
     }
-})(RestauranteForm);
+})(PratoForm);

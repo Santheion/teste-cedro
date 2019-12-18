@@ -11,7 +11,7 @@ class RestaurantList extends Component {
     RestaurantItem({restaurant}){
         const { handleDelete } = this.props;
         return (
-            <tr>
+            <tr className="restaurant-table">
                 <td><button className="delete-button" onClick={() => handleDelete(restaurant.id)}><img src={require("../imgs/delete-icon.svg")}/></button></td>
                 <td><button className="edit-button" onClick={() => this.props.history.push(`/restaurantes/${restaurant.id}`)}><img src={require("../imgs/edit-icon.svg")}/></button></td>
                 <td>{restaurant.name}</td>

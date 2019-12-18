@@ -1,26 +1,26 @@
 package com.douglas.testecedro.models;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Restaurant {
+public class Menu {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  @OneToMany(mappedBy = "restaurant")
-  private List<Menu> menus;
+  @ManyToOne
+  @JoinColumn(name = "restaurant_id")
+  private Restaurant restaurant;
 
-  @NotBlank(message = "Nome é obrigatório")
   private String name;
+
+  private Float price;
 
   public Long getId() {
     return id;
@@ -28,6 +28,14 @@ public class Restaurant {
 
   public void setId(String id) {
     this.id = Long.parseLong(id);
+  }
+
+  public Restaurant getRestaurant() {
+    return restaurant;
+  }
+
+  public void setRestaurant(Restaurant restaurant) {
+    this.restaurant = restaurant;
   }
 
   public String getName() {
@@ -38,11 +46,11 @@ public class Restaurant {
     this.name = name;
   }
 
-  public List<Menu> getMenu() {
-    return menus;
+  public Float getPrice() {
+    return price;
   }
 
-  public void setMenu(List<Menu> menus) {
-    this.menus = menus;
+  public void setPrice(Float price) {
+    this.price = price;
   }
 }
