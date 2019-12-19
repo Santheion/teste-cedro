@@ -6,7 +6,9 @@ import {
   Restaurante, 
   RestauranteCadastrar, 
   RestauranteEditar,
-  Prato
+  Prato,
+  PratoCadastrar,
+  PratoEditar
 } from "./pages";
 
 function App() {
@@ -31,6 +33,12 @@ function App() {
 
             <Route exact path="/pratos">
               <Prato/>
+            </Route>
+            <Route exact path="/pratos/cadastrar">
+              <PratoCadastrar/>
+            </Route>
+            <Route exact path="/pratos/:id">
+              <PratoEditar/>
             </Route>
             <Redirect to="/" />
           </Switch>

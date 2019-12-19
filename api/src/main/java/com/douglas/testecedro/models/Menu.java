@@ -1,11 +1,6 @@
 package com.douglas.testecedro.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Menu {
@@ -36,6 +31,15 @@ public class Menu {
 
   public void setRestaurant(Restaurant restaurant) {
     this.restaurant = restaurant;
+  }
+
+
+  public Long getRestaurantId(){
+    return restaurant.getId();
+  }
+
+  public String getRestaurantName(){
+    return restaurant.getName();
   }
 
   public String getName() {

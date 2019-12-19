@@ -1,7 +1,8 @@
 import Header from "./Header";
 import SearchBox from "./SearchBox";
-import RestaurantList from "./RestaurantList";
-import RestauranteForm from "./RestauranteForm";
-import MenuList from "./MenuList";
+import RestaurantList from "./Restaurante/RestaurantList";
+import RestauranteForm from "./Restaurante/RestauranteForm";
+import PratoList from "./Prato/PratoList";
+import PratoForm from "./Prato/PratoForm";
 
-export { Header, SearchBox, RestaurantList, RestauranteForm, MenuList };
+export { Header, SearchBox, RestaurantList, RestauranteForm, PratoList, PratoForm };

@@ -1,13 +1,12 @@
 package com.douglas.testecedro.models;
 
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+
+import org.springframework.data.rest.core.annotation.RestResource;
 
 @Entity
 public class Restaurant {
@@ -16,11 +15,12 @@ public class Restaurant {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  @OneToMany(mappedBy = "restaurant")
-  private List<Menu> menus;
-
   @NotBlank(message = "Nome é obrigatório")
   private String name;
+
+  @OneToMany(mappedBy = "restaurant")
+  @RestResource(path = "menus", rel="menus")
+  private Set<Menu> menus;
 
   public Long getId() {
     return id;
@@ -38,11 +38,11 @@ public class Restaurant {
     this.name = name;
   }
 
-  public List<Menu> getMenu() {
+  public Set<Menu> getMenus() {
     return menus;
   }
 
-  public void setMenu(List<Menu> menus) {
+  public void setMenus(Set<Menu> menus) {
     this.menus = menus;
   }
 }

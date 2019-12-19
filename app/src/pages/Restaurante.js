@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import { SearchBox, RestaurantList } from "../components";
 import axios from "../lib/axios";
 
@@ -44,6 +45,7 @@ class Restaurante extends Component {
             <div className="list-wrapper">
                 <h1>Restaurante</h1>
                 <SearchBox handleFilter={this.handleFilter} />
+                <Link to="/restaurantes/cadastrar" className="button create-button">Cadastrar Novo</Link>
                 <RestaurantList {...this.state} handleDelete={this.handleDelete} />
             </div>
         );

@@ -13,4 +13,5 @@ import org.springframework.data.repository.query.Param;
 @CrossOrigin(origins = "*")
 public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
     List<Restaurant> findByName(@Param("name") String name);
+    List<Restaurant> findAll();
 }

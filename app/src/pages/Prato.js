@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { MenuList } from "../components";
+import { Link } from "react-router-dom";
+import { PratoList } from "../components";
 import axios from "../lib/axios";
 
 class Pratos extends Component {
@@ -15,8 +16,7 @@ class Pratos extends Component {
     async getMenus(filter){
         this.setState({isLoading: true});
         try{
-            const url = filter ? `/menus/search/findByName?name=${filter}` : "/menus";
-            const menusResponse = await axios.get(url);
+            const menusResponse = await axios.get("/menus");
             this.setState({menus: menusResponse.data._embedded.menus, isLoading: false});
         } catch(error){
             this.setState({error, isLoading: false})
@@ -24,7 +24,7 @@ class Pratos extends Component {
     }
 
     async handleDelete(id){
-        if(window.confirm('Deseja remover esse restaurante?')){
+        if(window.confirm('Deseja remover esse prato?')){
             await axios.delete(`/menus/${id}`)
             this.getMenus();
         }
@@ -42,8 +42,9 @@ class Pratos extends Component {
         const { error } = this.state;
         return (
             <div className="list-wrapper">
+                <Link to="/pratos/cadastrar" className="button create-button">Cadastrar Novo</Link>
                 <h1>Pratos</h1>
-                <MenuList {...this.state} handleDelete={this.handleDelete} />
+                <PratoList {...this.state} handleDelete={this.handleDelete} />
             </div>
         );
     }
